@@ -1,8 +1,14 @@
-# Hugo / Netlify CMS / Azure Static Web App quickstart template
+# Hugo / Azure Static Web Apps / Netlify CMS quickstart template
 
-Create a static website based on [Hugo](https://gohugo.io/), [Netlify CMS](https://www.netlifycms.org/) and [Azure Static Web App](https://docs.microsoft.com/en-us/azure/static-web-apps/). For an example see [www.how2code.info](https://www.how2code.info).
+Create a static website with [Hugo](https://gohugo.io/), [Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/) and optionally [Netlify CMS](https://www.netlifycms.org/). For an example see [www.how2code.info](https://www.how2code.info).
 
 > Static websites ([Jamstack sites](https://www.jamstack.org)) have many benefits, including better performance, higher security and lower costs. Read [this article](https://www.how2code.info/en/blog/azure-static-web-apps-the-fast-and-secure-way-to-run-your-blog/) for an introduction to the Jamstack architecture.
+
+*Hugo* is a static website generator that has hundreds of free [themes](https://themes.gohugo.io/) available. This quickstart template uses the [Clarity](https://themes.gohugo.io/hugo-clarity/) theme. Thanks Chip Zoller and Dan Weru for your theme!
+
+*Azure Static Web Apps* is a feature-rich hosting service for static web apps. It offers custom domains, CDN, automatic certificates, API hosting, easy CI/CD setup, and many more benefits.
+
+*Netlify CMS* is a headless CMS (a content editor) that is compatible with most static website generators. It lives and stores content in your website GitHub repository. Setup is very easy.
 
 # Instructions
 
@@ -12,7 +18,7 @@ Create your own copy of this repository. Visit [this link](https://github.com/ja
 ## 2. Create a Static Web App in the Azure Portal
 In the [Azure Portal](https://portal.azure.com/), search for Static Web App and click Create. 
 
-Sign in with your GitHub account. Replace the yellow marked fields below with your own:
+Sign in with your GitHub account. Replace the yellow marked fields below with your own values:
 
 ![Create Static Web App](readme-images/static-webapp-create.png)
 
