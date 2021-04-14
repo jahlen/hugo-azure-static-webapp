@@ -28,7 +28,7 @@ Azure should have created a GitHub action in your repository. It should be found
 
 ## 4. (Optional) Add a custom domain in Azure
 
-Only if you already have a domain that you wish to use, for example *www.mydomain.com*. 
+*Only if you already have a domain that you wish to use, for example www.mydomain.com*. 
 
 In the Azure Portal / Static Web App, go to **Custom domains** under Settings and add it. Follow the instructions for configuring your DNS-server.
 
@@ -42,5 +42,14 @@ In your GitHub repository, edit the following files:
 * app/config/_default/config.toml
 * app/config/_default/params.toml
 
-Make sure to point **baseurl** to your own website address. 
+Make sure to point **baseurl** to your website address. This could either be your custom domain, or the website address you were given by Azure Static Web Apps.
 
+## 6. Visit your website
+
+Now visit your website! Try clicking around on the website to check that it works. If not, check out the configuration files from step 5.
+
+## 7. Configure Netlify CMS
+
+There is an Edit-button at the bottom of your website. It takes you to Netlify CMS.
+
+You will need to setup GitHub authentication for Netlify CMS to work.
