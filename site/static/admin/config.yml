@@ -1,0 +1,29 @@
+backend:
+  # name: test-repo
+  name: github
+  repo: # for example jahlen/how2code
+  branch: main # Branch to update (optional; defaults to master)
+  site_domain: # for example www.how2code.info
+  base_url: # for example https://www.how2code.info
+  auth_endpoint: api/auth
+
+media_folder: "site/static/images" # Folder where user uploaded files should go
+public_folder: "/images"
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "blog" # Used in the UI
+    folder: "/site/content/blog" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Author", name: "author", widget: "string", default: "John Doe"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Draft", name: "draft", widget: "boolean"}
+      - {label: "Categories", name: "categories", widget: "list"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
