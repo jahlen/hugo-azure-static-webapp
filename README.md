@@ -10,7 +10,9 @@ Create a static website based on [Hugo](https://gohugo.io/), [Netlify CMS](https
 Create your own copy of this repository. Visit [this link](https://github.com/jahlen/hugo-azure-static-webapp-quickstart/generate) to create.
 
 ## 2. Create a Static Web App in the Azure Portal
-In the [Azure Portal](https://portal.azure.com/), search for Static Web App and click Create. Sign in with your GitHub account. Replace the sample values below with your own:
+In the [Azure Portal](https://portal.azure.com/), search for Static Web App and click Create. 
+
+Sign in with your GitHub account. Replace the yellow marked fields below with your own:
 
 ![Create Static Web App](readme-images/static-webapp-create.png)
 
@@ -20,5 +22,25 @@ Enter the following locations:
 
 Your Azure Static Web App should be created within a few minutes.
 
-## 3. 
-Edit the following files so they point to your *repo* and *domain name*
+## 2. Check your GitHub action
+
+Azure should have created a GitHub action in your repository. It should be found under *.github/workflows*. Check that it exists. Otherwise something went wrong during step 2.
+
+## 3. (Optional) Add a custom domain in Azure
+
+Only if you already have a domain that you wish to use, for example *www.mydomain.com*. 
+
+In the Azure Portal / Static Web App, go to **Custom domains** under Settings and add it. Follow the instructions for configuring your DNS-server.
+
+Wait a couple of minutes for your custom domain to be completely setup, including the HTTP certificate.
+
+## 4. Edit configuration files in your repo
+
+In your GitHub repository, edit the following files:
+
+* app/config.toml
+* app/config/_default/config.toml
+* app/config/_default/params.toml
+
+Make sure to point **baseurl** to your own website address. 
+
