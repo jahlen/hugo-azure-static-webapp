@@ -22,11 +22,11 @@ Enter the following locations:
 
 Your Azure Static Web App should be created within a few minutes.
 
-## 2. Check your GitHub action
+## 3. Check your GitHub action
 
 Azure should have created a GitHub action in your repository. It should be found under *.github/workflows*. Check that it exists. Otherwise something went wrong during step 2.
 
-## 3. (Optional) Add a custom domain in Azure
+## 4. (Optional) Add a custom domain in Azure
 
 Only if you already have a domain that you wish to use, for example *www.mydomain.com*. 
 
@@ -34,7 +34,7 @@ In the Azure Portal / Static Web App, go to **Custom domains** under Settings an
 
 Wait a couple of minutes for your custom domain to be completely setup, including the HTTP certificate.
 
-## 4. Edit configuration files in your repo
+## 5. Edit configuration files in your repo
 
 In your GitHub repository, edit the following files:
 
