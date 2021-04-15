@@ -26,6 +26,8 @@ Enter the following locations:
 
 Your Azure Static Web App should be created within a few minutes.
 
+**Note: Your website will look like crap until you have edited the configuration files (step 5).**
+
 ## 3. Check your GitHub action
 
 Azure should have created a GitHub action in your repository. Check that it exists and that it has executed successfully. Otherwise something went wrong during step 2.
@@ -109,7 +111,7 @@ First [install Hugo](https://gohugo.io/getting-started/installing).
 Clone your GitHub repository locally. Either by using a tool like Visual Studio Code, or by command-line:
 
 ```
-git clone https://github.com/username/reponame.git
+git clone https://github.com/yourusername/yourreponame.git
 ```
 
 Open a command-prompt and go to the app directory of your local repository. Start the Hugo webserver:
@@ -118,6 +120,8 @@ Open a command-prompt and go to the app directory of your local repository. Star
 hugo server -D
 ```
 
-Visit http://localhost:1313
+Hugo will tell you the local address of your website (usually http://localhost:1313).
+
+Edit your website. Hugo will automatically trigger a rebuild of your website if any files change.
 
 ## Enjoy!!
