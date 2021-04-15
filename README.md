@@ -2,11 +2,11 @@
 
 Create a static website with [Hugo](https://gohugo.io/), [Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/) and optionally [Netlify CMS](https://www.netlifycms.org/). For an example see [www.how2code.info](https://www.how2code.info).
 
-> Static websites ([Jamstack sites](https://www.jamstack.org)) have many benefits, including better performance, higher security and lower costs. Read [this article](https://www.how2code.info/en/blog/azure-static-web-apps-the-fast-and-secure-way-to-run-your-blog/) for an introduction to the Jamstack architecture.
-
 * *Hugo* is a static website generator that has hundreds of free [themes](https://themes.gohugo.io/) available. This quickstart template uses the [Clarity](https://themes.gohugo.io/hugo-clarity/) theme. Thanks Chip Zoller and Dan Weru for your theme!
 * *Azure Static Web Apps* is a feature-rich hosting service for static web apps. It offers custom domains, CDN, automatic certificates, API hosting, easy CI/CD setup, and many more benefits.
 * *Netlify CMS* is a headless CMS (a content editor) that is compatible with most static website generators. It lives and stores content in your website GitHub repository. Setup is very easy.
+
+Static websites ([Jamstack sites](https://www.jamstack.org)) have many benefits, including better performance, higher security and lower costs. Read [this article](https://www.how2code.info/en/blog/azure-static-web-apps-the-fast-and-secure-way-to-run-your-blog/) for an introduction to the Jamstack architecture.
 
 # Instructions
 
@@ -52,11 +52,23 @@ Make sure to point **baseurl** to your website address. This could either be you
 
 Now visit your website! Try clicking around on the website to check that it works. If not, check out the configuration files from step 5.
 
-## 7. Configure Netlify CMS
+Note that the Admin-button at the bottom will not work until you have setup Netlify CMS.
 
-There is an Edit-button at the bottom of your website. It takes you to Netlify CMS.
+## 7. (Optional) Configure Netlify CMS
 
-You will need to setup GitHub authentication for Netlify CMS to work.
+To make Netlify CMS work, you need to do these things:
+
+* Update the settings in *app/static/admin/config.yml*. You will need to adjust the settings under backend and point them to your repository and domain.
+* Create a GitHub application.
+* Configure your Azure Static Web App with the OAuth settings.
+
+You will also need to setup GitHub OAuth authentication. In the Azure Portal, you need to add these Application Settings to your Static Web App:
+
+![Azure Static Web App OAuth configuration](readme-images/azure-oauth-config.png)
+
+* *OAuthClientID* and *OAuthClientSecret* you will need to obtain from GitHub.
+* *OAuthRedirectUri* should be like https://yourwebsite.com/api/callback
+* *OAuthState* should be just a long random string
 
 ## Structure
 
