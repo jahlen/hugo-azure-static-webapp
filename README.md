@@ -28,7 +28,7 @@ Your Azure Static Web App should be created within a few minutes.
 
 ## 3. Check your GitHub action
 
-Azure should have created a GitHub action in your repository. It should be found under *.github/workflows*. Check that it exists. Otherwise something went wrong during step 2.
+Azure should have created a GitHub action in your repository. It should be found under *.github/workflows*. Check that it exists and that it has executed successfully. Otherwise something went wrong during step 2.
 
 ## 4. (Optional) Add a custom domain in Azure
 
@@ -50,24 +50,44 @@ Make sure to point **baseurl** to your website address. This could either be you
 
 ## 6. Visit your website
 
-Now visit your website! Try clicking around on the website to check that it works. If not, check out the configuration files from step 5.
+Now visit your website! You should see something like this.
 
-Note that the Admin-button at the bottom will not work until you have setup Netlify CMS.
+![Hugo website startpage](readme-images/website-startpage.png)
+
+Note that the Admin-button at the bottom will not work until you have configured Netlify CMS.
 
 ## 7. (Optional) Configure Netlify CMS
 
 To make Netlify CMS work, you need to do these things:
 
-* Update the settings in *app/static/admin/config.yml*. You will need to adjust the settings under backend and point them to your repository and domain.
-* Create a GitHub application.
-* Configure your Azure Static Web App with the OAuth settings.
+* Update the settings in *app/static/admin/config.yml*
+* Create a GitHub application
+* Configure your Azure Static Web App with the OAuth settings
 
-You will also need to setup GitHub OAuth authentication. In the Azure Portal, you need to add these Application Settings to your Static Web App:
+#### app/static/admin/config.yml
+
+You will need to adjust the settings under *backend* and point them to your repository and domain.
+
+#### Create a GitHub application
+
+Go to your GitHub [Developer settings](https://github.com/settings/developers). Click on New OAuth App.
+
+![GitHub create OAuth application](readme-images/github-new-oauth-application.png)
+
+* *Application name* can be anything you want
+* *Homepage URL* can be anything you want
+* *Authorization callback URL* must be something like https://www.yourwebsite.com/api/callback
+
+After registering your app, click *Generate a new client secret*. Save a copy of your *Client ID* and *Client Secret* for use in the next step.
+
+#### Configure your Azure Static Web App with the OAuth settings
+
+In the Azure Portal, you need to add these Application Settings to your Static Web App:
 
 ![Azure Static Web App OAuth configuration](readme-images/azure-oauth-config.png)
 
-* *OAuthClientID* and *OAuthClientSecret* you will need to obtain from GitHub.
-* *OAuthRedirectUri* should be like https://yourwebsite.com/api/callback
+* *OAuthClientID* and *OAuthClientSecret* are the ones you previously received from GitHub when you created your GitHub application
+* *OAuthRedirectUri* should be like https://www.yourwebsite.com/api/callback (same as you entered in GitHub)
 * *OAuthState* should be just a long random string
 
 ## Structure
