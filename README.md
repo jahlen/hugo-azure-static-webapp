@@ -11,7 +11,7 @@ Static websites ([Jamstack sites](https://www.jamstack.org)) have many benefits,
 # Instructions
 
 ## 1. Create your repository
-Create your own copy of this repository. Visit [this link](https://github.com/jahlen/hugo-azure-static-webapp-quickstart/generate) to create.
+Create your own copy of this repository. Visit [this link](https://github.com/jahlen/hugo-azure-static-webapp/generate) to create.
 
 ## 2. Create a Static Web App in the Azure Portal
 In the [Azure Portal](https://portal.azure.com/), search for Static Web App and click Create. 
@@ -28,7 +28,9 @@ Your Azure Static Web App should be created within a few minutes.
 
 ## 3. Check your GitHub action
 
-Azure should have created a GitHub action in your repository. It should be found under *.github/workflows*. Check that it exists and that it has executed successfully. Otherwise something went wrong during step 2.
+Azure should have created a GitHub action in your repository. Check that it exists and that it has executed successfully. Otherwise something went wrong during step 2.
+
+![GitHub action](readme-images/github-action.png)
 
 ## 4. (Optional) Add a custom domain in Azure
 
@@ -56,7 +58,13 @@ Now visit your website! You should see something like this.
 
 Note that the Admin-button at the bottom will not work until you have configured Netlify CMS.
 
-## 7. (Optional) Configure Netlify CMS
+## 7. Edit your website
+
+See the [Hugo Clarity](https://github.com/chipzoller/hugo-clarity) documentation for instructions on how to customize your website.
+
+You can edit the files under *app/content*. Instead of editing them manually, you can use Netlify CMS. There is an Admin-button in the page footer that will take you to Netlify CMS.
+
+## 8. (Optional) Configure Netlify CMS
 
 Netlify CMS depends on a backend API for authentication. This is handled by */api/OAuth.cs*, but it requires some configuration. If you wish to use Netlify CMS, you need to do these things:
 
