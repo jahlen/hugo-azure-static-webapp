@@ -100,4 +100,24 @@ In the Azure Portal, you need to add these Application Settings to your Static W
 
 Now try visiting https://www.yourwebsite.com/admin/ to open Netlify CMS.
 
+## 9. (Optional) Setup local development environment
+
+You can easily run and edit your website locally!
+
+First [install Hugo](https://gohugo.io/getting-started/installing). 
+
+Clone your GitHub repository locally. Either by using a tool like Visual Studio Code, or by command-line:
+
+```
+git clone https://github.com/username/reponame.git
+```
+
+Open a command-prompt and go to the app directory of your local repository. Start the Hugo webserver:
+
+```
+hugo server -D
+```
+
+Visit http://localhost:1313
+
 ## Enjoy!!
