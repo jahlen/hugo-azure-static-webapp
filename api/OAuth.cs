@@ -43,7 +43,7 @@ namespace How2Code.info
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var code = req.Query["_code"].ToString();
+            var code = req.Query["_code"].ToString(); // The parameter is renamed from "code" to "_code" by proxies.json to avoid problems with the special meaning of "code" in Azure Functions
             var state = req.Query["state"].ToString();
             if (state != State)
             {

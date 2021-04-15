@@ -58,17 +58,17 @@ Note that the Admin-button at the bottom will not work until you have configured
 
 ## 7. (Optional) Configure Netlify CMS
 
-To make Netlify CMS work, you need to do these things:
+Netlify CMS depends on a backend API for authentication. This is handled by */api/OAuth.cs*, but it requires some configuration. If you wish to use Netlify CMS, you need to do these things:
 
-* Update the settings in *app/static/admin/config.yml*
-* Create a GitHub application
-* Configure your Azure Static Web App with the OAuth settings
+1. Update the settings in *app/static/admin/config.yml*
+2. Create a GitHub application
+3. Configure your Azure Static Web App with the OAuth settings
 
-#### app/static/admin/config.yml
+### app/static/admin/config.yml
 
 You will need to adjust the settings under *backend* and point them to your repository and domain.
 
-#### Create a GitHub application
+### Create a GitHub application
 
 Go to your GitHub [Developer settings](https://github.com/settings/developers). Click on New OAuth App.
 
@@ -80,7 +80,7 @@ Go to your GitHub [Developer settings](https://github.com/settings/developers). 
 
 After registering your app, click *Generate a new client secret*. Save a copy of your *Client ID* and *Client Secret* for use in the next step.
 
-#### Configure your Azure Static Web App with the OAuth settings
+### Configure your Azure Static Web App with the OAuth settings
 
 In the Azure Portal, you need to add these Application Settings to your Static Web App:
 
@@ -90,6 +90,6 @@ In the Azure Portal, you need to add these Application Settings to your Static W
 * *OAuthRedirectUri* should be like https://www.yourwebsite.com/api/callback (same as you entered in GitHub)
 * *OAuthState* should be just a long random string
 
-## Structure
+Now try visiting https://www.yourwebsite.com/admin/ to open Netlify CMS.
 
 ## Enjoy!!
