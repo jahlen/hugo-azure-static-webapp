@@ -26,15 +26,15 @@ Static websites ([Jamstack sites](https://www.jamstack.org)) have many benefits,
 
 You will find the latest instructions on how to setup and configure your static website [here](https://github.com/jahlen/hugo-azure-static-webapp).
 
-Your website comes with the Hugo Clarity theme. Here are [instructions](https://github.com/chipzoller/hugo-clarity) for the theme.
-
 #### How to edit your website
+
+Your website comes with the Hugo Clarity theme. Here are [instructions](https://github.com/chipzoller/hugo-clarity) for configuring the theme.
 
 You can edit the files under *app/content*. Instead of editing them manually, you can use Netlify CMS. There is an Admin-button in the page footer that will take you to Netlify CMS.
 
 #### How to setup Netlify CMS
 
-You need to update *app/static/admin/config.yml* and setup OAuth authentication. Check the instructions [here](https://github.com/jahlen/hugo-azure-static-webapp#7-optional-configure-netlify-cms).
+You need to update *app/static/admin/config.yml* and setup OAuth authentication. Check the instructions [here](https://github.com/jahlen/hugo-azure-static-webapp#8-optional-configure-netlify-cms).
 
 #### Links not working?
 Check the baseurl setting in your *app/config/_default/config.toml* file.
