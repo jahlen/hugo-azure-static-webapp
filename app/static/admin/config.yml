@@ -20,7 +20,7 @@ collections:
       - {label: "Author", name: "author", widget: "string", default: "John Doe"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Draft", name: "draft", widget: "boolean"}
+      - {label: "Draft", name: "draft", widget: "boolean", default: false}
       - {label: "Categories", name: "categories", widget: "list"}
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Description", name: "description", widget: "text"}
