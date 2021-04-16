@@ -93,6 +93,8 @@ Go to your GitHub [Developer settings](https://github.com/settings/developers). 
 
 After registering your app, click *Generate a new client secret*. Save a copy of your *Client ID* and *Client Secret* for use in the next step.
 
+![GitHub ClientID and Client Secret](readme-images/github-clientid-clientsecret.png)
+
 ### Configure your Azure Static Web App with the OAuth settings
 
 In the Azure Portal, you need to add these Application Settings to your Static Web App:
