@@ -16,11 +16,11 @@ Create your own copy of this repository. Visit [this link](https://github.com/ja
 ## 2. Create a Static Web App in the Azure Portal
 In the [Azure Portal](https://portal.azure.com/), search for Static Web App and click Create. 
 
-Sign in with your GitHub account. Replace the yellow marked fields below with your own values:
+Sign in with your GitHub account. Fill in the yellow marked fields below with your own values:
 
 ![Create Static Web App](readme-images/static-webapp-create.png)
 
-Enter the following locations:
+Also fill in these yellow marked fields. *App location* should be */app* and *Api location* should be */api*.
 
 ![Create Static Web App](readme-images/static-webapp-create-2.png)
 
@@ -28,29 +28,32 @@ Your Azure Static Web App should be created within a few minutes.
 
 **Note: Your website will look like crap until you have edited the configuration files (step 5).**
 
-## 3. Check your GitHub action
-
-Azure should have created a GitHub action in your repository. Check that it exists and that it has executed successfully. Otherwise something went wrong during step 2.
-
-![GitHub action](readme-images/github-action.png)
-
-## 4. (Optional) Add a custom domain in Azure
+## 3. (Optional) Add a custom domain in Azure
 
 *Only if you already have a domain that you wish to use, for example www.mydomain.com*. 
 
 In the Azure Portal / Static Web App, go to **Custom domains** under Settings and add it. Follow the instructions for configuring your DNS-server.
 
-Wait a couple of minutes for your custom domain to be completely setup, including the HTTP certificate.
+Wait a couple of minutes for your custom domain to be completely setup, including the HTTPS certificate.
+
+## 4. Check your GitHub action
+
+Azure should have created a GitHub action in your repository. Check that it executes successfully. It should be yellow while executing and green when finished.
+
+![GitHub action](readme-images/github-action.png)
 
 ## 5. Edit configuration files in your repo
 
 In your GitHub repository, edit the following files:
 
-* app/config.toml
 * app/config/_default/config.toml
 * app/config/_default/params.toml
 
-Make sure to point **baseurl** to your website address. This could either be your custom domain, or the website address you were given by Azure Static Web Apps.
+Make sure to point **baseurl** to your website address (and don't forget the trailing slash). This could either be your custom domain, or the website address you were given by Azure Static Web Apps.
+
+Here is how to find the URL in the Azure Portal (if you haven't used a custom domain instead).
+
+![Find Static Web App URL](readme-images/find-static-webapp-url.png)
 
 ## 6. Visit your website
 
