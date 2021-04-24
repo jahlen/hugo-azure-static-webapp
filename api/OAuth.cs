@@ -23,6 +23,7 @@ namespace How2Code.info
         public const string AuthorizationUrl = "https://github.com/login/oauth/authorize";
         public const string TokenUrl = "https://github.com/login/oauth/access_token";
         public const string Scope = "repo,user";
+        public const string CookieName = "oauth_state";
         public static string ClientId => Environment.GetEnvironmentVariable("OAuthClientID");
         public static string ClientSecret => Environment.GetEnvironmentVariable("OAuthClientSecret");
         public static string RedirectUri => Environment.GetEnvironmentVariable("OAuthRedirectUri");
@@ -30,22 +31,25 @@ namespace How2Code.info
 
         [FunctionName("Auth")]
         public static IActionResult Auth(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var authorizationUrl = $"{AuthorizationUrl}?response_type=code&client_id={ClientId}&redirect_uri={WebUtility.UrlEncode(RedirectUri)}&scope={WebUtility.UrlEncode(Scope)}&state={WebUtility.UrlEncode(State)}";
+            var state = CreateRandomString();
+            req.HttpContext.Response.Cookies.Append(CookieName, state, new CookieOptions { HttpOnly = true, SameSite = SameSiteMode.Strict, IsEssential = true});
+            var authorizationUrl = $"{AuthorizationUrl}?response_type=code&client_id={ClientId}&redirect_uri={WebUtility.UrlEncode(RedirectUri)}&scope={WebUtility.UrlEncode(Scope)}&state={WebUtility.UrlEncode(state)}";
 
             return new RedirectResult(authorizationUrl);
         }
 
         [FunctionName("Callback2")]
         public static async Task<IActionResult> Callback2(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var code = req.Query["_code"].ToString(); // The parameter is renamed from "code" to "_code" by proxies.json to avoid problems with the special meaning of "code" in Azure Functions
+            var code = req.Query["_code"].ToString();
             var state = req.Query["state"].ToString();
-            if (state != State)
+            var stateFromCookie = req.Cookies[CookieName];
+            if (state != stateFromCookie)
             {
                 return new BadRequestResult();
             }
@@ -63,6 +67,14 @@ namespace How2Code.info
             var script = CallbackScript("github", "success", $"{{\"token\":\"{token}\",\"provider\":\"github\"}}");
 
             return new ContentResult { Content = script, ContentType = "text/html", StatusCode = 200 };
+        }
+
+        [FunctionName("Success")]
+        public static IActionResult Success(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            return new ContentResult() { StatusCode = 204, ContentType = "text/plain", Content = "" };
         }
 
         private static string CallbackScript(string oauthProvider, string message, string content) => $@"
@@ -85,12 +97,9 @@ namespace How2Code.info
             </script>
         ";
 
-        [FunctionName("Success")]
-        public static IActionResult Success(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+        private static string CreateRandomString()
         {
-            return new ContentResult() { StatusCode = 204, ContentType = "text/plain", Content = "" };
+            return Guid.NewGuid().ToString();
         }
     }
 }

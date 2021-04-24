@@ -103,7 +103,6 @@ In the Azure Portal, you need to add these Application Settings to your Static W
 
 * *OAuthClientID* and *OAuthClientSecret* are the ones you previously received from GitHub when you created your GitHub application
 * *OAuthRedirectUri* should be like https://www.yourwebsite.com/api/callback (same as you entered in GitHub)
-* *OAuthState* should be just a long random string
 
 Now try visiting https://www.yourwebsite.com/admin/ to open Netlify CMS.
 
