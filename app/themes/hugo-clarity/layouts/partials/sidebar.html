@@ -1,16 +1,59 @@
-{{ $s := .Site.Params }}
+{{ $s := site.Params }}
 <aside class="sidebar">
   <section class="sidebar_inner">
-    {{ if $s.IntroDescription }}
-      <h2>{{ $s.Author }}</h2>
-      <div class="sidebar_description">
-        {{ $s.IntroDescription | markdownify }}
+    {{- $introDescription := $s.introDescription }}
+    {{- with .Params.introDescription }}
+      {{- $introDescription = . }}
+    {{- end }}
+    {{- if $introDescription }}
+      {{- $author := $s.Author  }}
+      {{- $showAuthorPhoto := false }}
+      {{- $fullAuthor := reflect.IsMap $author }}
+      {{- if $fullAuthor }}
+        {{-  if $author.photo }}
+          {{- $showAuthorPhoto = true }}
+        {{- end }}
+      {{- end }}
+      {{- if $showAuthorPhoto }}
+        <div class="author_header">
+          <img src="{{ absURL $author.photo }}" alt="{{ $author.name }} photo">
+          <h2>{{  $author.name }}</h2>
+        </div>
+      {{- else }}
+        <h2>{{  if $fullAuthor }}{{ $author.name }}{{ else }}{{ $author }}{{ end }}</h2>
+      {{- end }}
+      <div class="author_bio">
+        {{ markdownify $introDescription }}
       </div>
       {{- if ( ne $s.introURL false ) }}
       {{- $r := T "read_more" }}
       <a href='{{ absLangURL (default "about/" $s.introURL) }}' class="button mt-1" role="button" title='{{ $r }}'>{{ $r }}</a>
       {{- end }}
     {{- end }}
+
+    {{ if .Site.Params.sidebardisclaimer }}
+      <div class="sidebardisclaimer"> 
+        <h2 class="mt-4">Disclaimer</h2> 
+        {{ .Site.Params.disclaimerText }}
+      </div> 
+    {{ end }}  
+
+    {{- $relatedInSidebar := true }}
+    {{- if eq $s.showRelatedInSidebar false }}
+      {{ $relatedInSidebar = false }}
+    {{- end }}
+    {{ if (and ($relatedInSidebar) (isset .Params "series") ) }}
+      {{$related := where .Site.RegularPages ".Params.series" "eq" .Params.series }}
+	    <h2 class="mt-4">{{ T "series_posts" }}</h2>
+      <ul>
+        {{ range $related }}
+        <li>
+          <a href="{{ .Permalink }}" class="nav-link" title="{{ .Title }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+
     {{- $posts := where (where .Site.RegularPages "Permalink" "!=" .Permalink) "Type" "in" $s.mainSections }}
     {{- $featured := default 8 $s.numberOfFeaturedPosts }}
     {{- with first $featured (where $posts "Params.featured" true)}}
